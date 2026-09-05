@@ -1,0 +1,154 @@
+# Punktetabelle der Risikotragfähigkeit (objektive Achse).
+#
+# Gemessen wird, was ein Haushalt an Schwankung TRAGEN KANN — unabhängig davon,
+# was er tragen WILL. Die zweite Frage beantwortet tolerance_v1.yaml. Beide
+# werden über ein bindendes Minimum verknüpft und niemals gemittelt.
+#
+# Aufbau der Datei: Jede Dimension liefert 0 bis 100 Punkte, gewichtet zur
+# Gesamtpunktzahl; klassenschwellen bildet diese auf eine Risikoklasse ab.
+version: "1.1.0"
+gueltig_ab: 2026-07-26
+beschreibung: >-
+  Bewertung der objektiven Risikotragfähigkeit eines Privathaushalts über sechs
+  Dimensionen. Struktur angelehnt an DIN 77230 (Basis-Finanzanalyse für
+  Privathaushalte); die Norm wurde nicht eingesehen und wird nicht im Wortlaut
+  wiedergegeben.
+quelle: >-
+  Eigene Festlegung des Anbieters. Die Auswahl und Reihenfolge der Dimensionen
+  ist an die Struktur der DIN 77230 angelehnt; die Punktwerte selbst sind nicht
+  der Norm entnommen, sondern vom Anbieter gesetzt und als versionierter
+  Parameter hier dokumentiert, damit jedes Ergebnis dem Regelstand zuordenbar
+  bleibt, unter dem es entstanden ist.
+
+# --- K.-o.-Kriterium ------------------------------------------------------
+# Liegt die Liquiditätsreserve unter diesem Wert, wird Risikoklasse 1 gesetzt —
+# unabhaengig von jeder anderen Dimension und ohne Verrechnung. Begruendung:
+# Wer keine Rücklage hat, muss im Notfall die Anlage aufloesen. Der Zeitpunkt
+# des Notfalls korreliert mit fallenden Maerkten (Arbeitsplatzverlust in der
+# Rezession), sodass der Verkauf gerade dann erzwungen wird, wenn er am
+# teuersten ist. Eine hohe Punktzahl in anderen Dimensionen kann das nicht
+# ausgleichen: Sie beschreibt Verhaeltnisse, die im Notfall gerade nicht mehr
+# gelten. Deshalb ein Ausschluss und keine Punktabwertung.
+#
+# Aenderung gegenueber Fassung 1.0.0: Schwelle neu aufgenommen.
+mindestreserve_monate: 3.0
+
+dimensionen:
+
+  liquiditaetsreserve:
+    beschreibung: >-
+      Verfügbare Rücklage, gemessen in Monatsausgaben. Wer keine Reserve hat,
+      muss im Notfall die Anlage auflösen — im Zweifel genau dann, wenn die
+      Kurse tief stehen. Deshalb die höchste Einzelgewichtung.
+    gewicht: 0.25
+    einheit: monatsausgaben
+    baender:
+      - bis: 1.0
+        punkte: 0
+      - bis: 3.0
+        punkte: 35
+      - bis: 6.0
+        punkte: 70
+      - bis: 12.0
+        punkte: 90
+      - bis: null
+        punkte: 100
+
+  einkommensstabilitaet:
+    beschreibung: >-
+      Beschäftigungsart als Indikator dafür, wie verlässlich künftige Sparraten
+      und die Deckung laufender Ausgaben sind.
+    gewicht: 0.20
+    optionen:
+      VERBEAMTET: 100
+      UNBEFRISTET: 85
+      RUHESTAND: 70
+      BEFRISTET: 45
+      SELBSTSTAENDIG: 40
+      IN_AUSBILDUNG: 25
+      ARBEITSSUCHEND: 0
+
+  freie_sparquote:
+    beschreibung: >-
+      Monatlich frei verfügbarer Betrag im Verhältnis zum Nettoeinkommen. Misst
+      den Puffer zwischen Einnahmen und Verpflichtungen.
+    gewicht: 0.20
+    einheit: anteil_am_nettoeinkommen
+    baender:
+      - bis: 0.05
+        punkte: 10
+      - bis: 0.10
+        punkte: 40
+      - bis: 0.20
+        punkte: 70
+      - bis: 0.30
+        punkte: 90
+      - bis: null
+        punkte: 100
+
+  anlagehorizont:
+    beschreibung: >-
+      Restlaufzeit bis zum Zieltermin in Monaten. Je länger der Horizont, desto
+      eher lässt sich ein zwischenzeitlicher Rückgang aussitzen.
+    gewicht: 0.15
+    einheit: monate
+    baender:
+      - bis: 24
+        punkte: 0
+      - bis: 60
+        punkte: 35
+      - bis: 120
+        punkte: 70
+      - bis: 240
+        punkte: 90
+      - bis: null
+        punkte: 100
+
+  verschuldung:
+    beschreibung: >-
+      Monatlicher Kapitaldienst im Verhältnis zum Nettoeinkommen. Ein hoher
+      Schuldendienst bindet künftige Zahlungsfähigkeit unabhängig davon, wie
+      sich die Anlage entwickelt.
+    gewicht: 0.10
+    einheit: anteil_am_nettoeinkommen
+    baender:
+      - bis: 0.001
+        punkte: 100
+      - bis: 0.10
+        punkte: 80
+      - bis: 0.25
+        punkte: 50
+      - bis: 0.40
+        punkte: 20
+      - bis: null
+        punkte: 0
+
+  vermoegensanteil:
+    beschreibung: >-
+      Anteil der geplanten Anlage am gesamten Vermögen. Wer sein gesamtes
+      Vermögen in ein Ziel steckt, hat keinen Ausweichpuffer.
+    gewicht: 0.10
+    einheit: anteil_am_gesamtvermoegen
+    baender:
+      - bis: 0.25
+        punkte: 100
+      - bis: 0.50
+        punkte: 75
+      - bis: 0.75
+        punkte: 45
+      - bis: 0.95
+        punkte: 20
+      - bis: null
+        punkte: 0
+
+klassenschwellen:
+  - ab_punkte: 0
+    klasse: 1
+  - ab_punkte: 25
+    klasse: 2
+  - ab_punkte: 45
+    klasse: 3
+  - ab_punkte: 65
+    klasse: 4
+  - ab_punkte: 82
+    klasse: 5

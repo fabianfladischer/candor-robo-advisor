@@ -1,0 +1,25 @@
+# Virtuelle Umgebungen
+.venv/
+.lockprobe/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Werkzeug-Caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# Betriebssystem
+.DS_Store
+
+# Rohdaten des Abrufs. Der eingefrorene Snapshot unter data/snapshot/ wird
+# dagegen versioniert — er ist die Grundlage jeder reproduzierbaren Rechnung.
+data/raw/

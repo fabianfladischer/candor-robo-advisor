@@ -1,0 +1,119 @@
+TITEL: Geeignetheitserklärung
+BETREFF: Geeignetheitserklärung K-2026-0233/Z-2026-0233-A
+
+TITEL: Geeignetheitserklärung
+ABSATZ: Kunde K-2026-0233 · Ziel Z-2026-0233-A · Stichtag 26.07.2026
+UEBERSCHRIFT: 1. Zweck und Rechtsgrundlage
+ABSATZ: Diese Erklärung dokumentiert, wie die ausgesprochene Anlageempfehlung zustande gekommen ist und weshalb sie zu den erhobenen Verhältnissen, Zielen und Kenntnissen passt. Rechtsgrundlage ist Art. 54 Abs. 12 DelVO (EU) 2017/565 in Verbindung mit § 64 Abs. 4 WpHG.
+UEBERSCHRIFT: 2. Erfasstes Kundenprofil
+TABELLE: 
+  | Angabe | Wert
+  | Kundenkennung | K-2026-0233
+  | Monatliches Nettoeinkommen | 5 200,00 €
+  | Monatliche Fixkosten | 2 600,00 €
+  | Monatlicher Kapitaldienst | 250,00 €
+  | Frei verfügbarer Sparbetrag | 900,00 €
+  | Liquiditätsreserve | 6,0 Monatsausgaben
+  | Bestehende Verbindlichkeiten | 12 000,00 €
+  | Sonstiges Vermögen | 65 000,00 €
+  | Beschäftigungsverhältnis | unbefristet angestellt
+UNTERUEBERSCHRIFT: 2.1 Risikotragfähigkeit
+ABSATZ: [CAP-CLASS] Die Risikotragfähigkeit wurde anhand von sechs Kriterien erhoben und mit 71,50 von 100 Punkten bewertet. Nach den Klassenschwellen des Regelwerks entspricht diese Punktzahl Risikoklasse 4; maßgeblich für die Tragfähigkeit ist Risikoklasse 4. Eine Abweichung zwischen beiden Werten beruht auf einem Ausschlusskriterium, das die Klasse unabhängig von der Punktzahl setzt. Die Tragfähigkeit beschreibt, welches Risiko die wirtschaftlichen Verhältnisse objektiv zulassen, unabhängig davon, welches Risiko gewünscht wird.
+UNTERUEBERSCHRIFT: 2.2 Risikobereitschaft
+ABSATZ: [TOL-CLASS] Die Risikobereitschaft wurde über fünf Fragen erhoben und mit 70,00 von 100 Punkten bewertet. Daraus ergibt sich Risikoklasse 4. Die Bereitschaft beschreibt, welches Risiko subjektiv getragen werden will.
+ABSATZ: [TOL-SCEN] Zur Erhebung der Verlusttoleranz wurden konkrete Eurobeträge vorgelegt und keine Prozentangaben. Bezugsgröße ist das über die Laufzeit eingezahlte Kapital von 101 400,00 €; als tragbar bezeichnet wurde ein zwischenzeitlicher Rückgang von 20 280,00 €. Prozentangaben werden erfahrungsgemäß systematisch anders bewertet als der gleich hohe Betrag; die Betragsdarstellung begrenzt diesen Effekt.
+UNTERUEBERSCHRIFT: 2.3 Kenntnisse und Erfahrungen
+ABSATZ: [KNW-CAP] Kenntnisse und Erfahrungen wurden nach Instrumentengattungen erhoben. Sie ergeben keinen eigenen Punktwert, sondern eine Obergrenze der zulässigen Produktkomplexität: Risikoklasse 5. Rechtsgrundlage ist Art. 55 DelVO (EU) 2017/565.
+UEBERSCHRIFT: 3. Ermittelte Risikoklasse
+TABELLE: 
+  | Achse | Punkte | Klasse
+  | Risikotragfähigkeit | 71,50 | 4
+  | Risikobereitschaft | 70,00 | 4
+  | Kenntnisse und Erfahrungen | — | 5
+  | Maßgeblich | — | 3 — bindend: Restlaufzeit (Glide-Path)
+ABSATZ: [CLS-MIN] Aus dem Profil ergibt sich die Risikoklasse als Minimum aus Risikotragfähigkeit (4) und Risikobereitschaft (4), zusätzlich begrenzt durch die Kenntnisse und Erfahrungen (5): Risikoklasse 4, bindend ist die Achse Risikotragfähigkeit. Maßgeblich für die Anlageentscheidung ist Risikoklasse 3; eine Abweichung von der Profilklasse beruht auf der zusätzlichen Deckelung durch die verbleibende Restlaufzeit (Glide-Path). Die Achsen werden ausdrücklich nicht gemittelt: Eine Mittelung würde eine fehlende Voraussetzung durch eine andere ausgleichen, die sie nicht ersetzen kann.
+ABSATZ: [GLD-CAP] Wegen der verbleibenden Laufzeit von 83 Monaten bis zum Zieltermin wird die zulässige Risikoklasse zusätzlich auf 3 begrenzt. Mit abnehmender Restlaufzeit sinkt die Fähigkeit, einen zwischenzeitlichen Rückgang auszusitzen.
+--- Seitenumbruch ---
+UEBERSCHRIFT: 4. Anlageziel und erforderliche Rendite
+TABELLE: 
+  | Angabe | Wert
+  | Zielkennung | Z-2026-0233-A
+  | Bezeichnung | Eigenkapital Immobilienkauf
+  | Zieltyp | Eigenkapital für eine Immobilie
+  | Priorität | MUSS-Ziel
+  | Zielbetrag | 95 000,00 €
+  | Zieltermin | 01.07.2033
+  | Anlagehorizont | 83 Monate (6,92 Jahre)
+  | Startkapital | 35 000,00 €
+  | Monatliche Sparrate | 800,00 €
+  | Summe der Einzahlungen | 101 400,00 €
+ABSATZ: [GOAL-RET] Um den Zielbetrag von 95 000,00 € in 83 Monaten zu erreichen, ist bei einem Startkapital von 35 000,00 € und einer monatlichen Sparrate von 800,00 € eine Rendite von -1,41 % jährlich erforderlich. Bei einer angenommenen Inflation von 2,00 % entspricht das real -3,34 % jährlich.
+UEBERSCHRIFT: 5. Simulierte Zielerreichung
+ABSATZ: [REC-SIM] Die Zielerreichung wurde über 10 000 simulierte Verläufe geprüft. Verwendet wurde ein zirkulärer Block-Bootstrap mit einer Blocklänge von zwölf Monaten: Er zieht zusammenhängende historische Zeiträume statt einzelner Monate und erhält damit Autokorrelation, Volatilitätscluster und die Abhängigkeit zwischen den Assetklassen. Kosten und jährliches Rebalancing sind berücksichtigt.
+ABSATZ: [REC-THR] Für dieses Ziel wird eine Mindest-Erfolgswahrscheinlichkeit von 85,00 % verlangt. Der Wert ergibt sich aus Zieltyp und Priorität und ist im Regelwerk hinterlegt.
+ABSATZ: [REC-OUT] Die simulierte Erfolgswahrscheinlichkeit beträgt 97,51 % gegenüber geforderten 85,00 %. Ergebnis des Abgleichs: erreichbar.
+TABELLE: 
+  | Perzentil des Endwerts | Betrag
+  | 5 % | 99 205 €
+  | 25 % | 114 020 €
+  | 50 % | 125 120 €
+  | 75 % | 136 268 €
+  | 95 % | 152 675 €
+  | Zielbetrag zum Vergleich | 95 000 €
+ABSATZ: Im Misserfolgsfall — also gemittelt allein über die Verläufe, die den Zielbetrag verfehlen — fehlen im Mittel 5 610 €. Der mediane größte zwischenzeitliche Rückgang beträgt -6,76 %.
+--- Seitenumbruch ---
+UEBERSCHRIFT: 6. Empfohlenes Portfolio
+ABSATZ: [ADV-PF] Das empfohlene Portfolio wurde durch eine restringierte Optimierung nach dem Erwartungswert-Varianz-Ansatz bestimmt. Die Bandbreiten der Risikoklasse 3 sind dabei zwingende Nebenbedingungen; Leerverkäufe sind ausgeschlossen. Die erwarteten Renditen und die Kovarianz wurden geschrumpft geschätzt, um die bekannte Empfindlichkeit des Verfahrens gegenüber Schätzfehlern zu begrenzen.
+TABELLE: 
+  | Assetklasse | Instrument (ISIN) | Gewicht | Bandbreite der Klasse
+  | Industrieländer-Aktien | iShares MSCI World UCITS ETF USD (Dist) (IE00B0M62Q58) | 40,00 % | 15 % bis 40 %
+  | Euro-Staatsanleihen | iShares Euro Government Bond Capped 1.5-10.5yr UCITS ETF (DE) (DE000A0H0785) | 45,00 % | 10 % bis 45 %
+  | Euro-Unternehmensanleihen | iShares € Corp Bond Large Cap UCITS ETF EUR (Dist) (IE0032523478) | 5,17 % | 5 % bis 35 %
+  | Kurzläufer Euro | iShares eb.rexx Government Germany 1.5-2.5yr UCITS ETF (DE) (DE0006289473) | 9,83 % | 0 % bis 35 %
+UNTERUEBERSCHRIFT: 6.1 Begründung je Position
+AUFZAEHLUNG: 
+  - Industrieländer-Aktien: 40,00 % — zulässige Bandbreite der Risikoklasse 3 ist 15 % bis 40 %; erwartete Rendite 10,13 % p. a. bei 13,68 % Volatilität p. a.
+  - Euro-Staatsanleihen: 45,00 % — zulässige Bandbreite der Risikoklasse 3 ist 10 % bis 45 %; erwartete Rendite 1,60 % p. a. bei 5,29 % Volatilität p. a.
+  - Euro-Unternehmensanleihen: 5,17 % — zulässige Bandbreite der Risikoklasse 3 ist 5 % bis 35 %; erwartete Rendite 1,85 % p. a. bei 5,58 % Volatilität p. a.
+  - Kurzläufer Euro: 9,83 % — zulässige Bandbreite der Risikoklasse 3 ist 0 % bis 35 %; erwartete Rendite 0,00 % p. a. bei 3,22 % Volatilität p. a.
+UNTERUEBERSCHRIFT: 6.2 Kennzahlen des Portfolios
+TABELLE: 
+  | Kennzahl | Wert
+  | Erwartete Rendite p. a. | 4,79 %
+  | Erwartete Volatilität p. a. | 6,48 %
+  | Schätzverfahren erwartete Rendite | shrinkage (Intensität 0,0564)
+  | Schätzverfahren Kovarianz | ledoit_wolf (Intensität 0,0376)
+  | Verwendeter Solver | CLARABEL
+  | Beobachtungen der Schätzung | 220 Monate
+UEBERSCHRIFT: 7. Nachhaltigkeitspräferenzen
+ABSATZ: [ADV-ESG] Nachhaltigkeitspräferenzen wurden nach Art. 2 Nr. 7 DelVO (EU) 2017/565 in der Fassung der DelVO (EU) 2021/1253 erhoben. Ergebnis: Das Anlageuniversum wurde vor der Optimierung um 1 von 8 Assetklassen bereinigt. Ausgeschlossen: GOLD. Die ausgeschlossenen Positionen tragen im empfohlenen Portfolio ein Gewicht von exakt null. Der Filter schließt nicht konforme Assetklassen vollständig aus; der im empfohlenen Portfolio erreichte Anteil wird deshalb je verlangter Ausprägung ausgewiesen und war gegen den verlangten Mindestanteil zu prüfen.
+TABELLE: 
+  | Ausprägung | Verlangt | Mindestanteil | Erreicht
+  | Ökologisch nachhaltig (VO 2020/852) | nein | — | —
+  | Nachhaltige Investition (VO 2019/2088) | nein | — | —
+  | Nachteilige Auswirkungen (PAI) | ja | 60,00 % | 100,00 %
+AUFZAEHLUNG: 
+  - GOLD: erfüllt nicht: pai — ETC auf physisches Gold. Kein Fonds, keine SFDR-Offenlegungspflicht als Finanzprodukt, keine wirtschaftliche Tätigkeit im Sinne der Taxonomie. Diese Einstufung folgt der Rechtsform und ist die einzige des Blocks, die nicht auf einer Annahme über Datenverfügbarkeit beruht.
+--- Seitenumbruch ---
+UEBERSCHRIFT: 8. Risikohinweise und Kosten
+ABSATZ: Wertpapieranlagen unterliegen Kursschwankungen. Der Wert der Anlage kann fallen; eingesetztes Kapital kann teilweise oder vollständig verloren gehen. Aus der historischen Wertentwicklung lässt sich die künftige nicht ableiten.
+ABSATZ: Die ausgewiesene Erfolgswahrscheinlichkeit ist das Ergebnis einer Simulation auf Grundlage historischer Monatsrenditen. Das Verfahren kann nur Marktverläufe erzeugen, die in ähnlicher Form bereits vorgekommen sind; ein Verlauf, der schlechter ist als alles historisch Beobachtete, ist darin nicht enthalten. Die Angabe ist eine Modellrechnung und keine Zusage.
+UNTERUEBERSCHRIFT: 8.1 Kostenausweis
+TABELLE: 
+  | Assetklasse | Laufende Kosten p. a. | Spread je Handel
+  | Industrieländer-Aktien | 0,20 % | 0,05 %
+  | Euro-Staatsanleihen | 0,15 % | 0,05 %
+  | Euro-Unternehmensanleihen | 0,20 % | 0,10 %
+  | Kurzläufer Euro | 0,15 % | 0,05 %
+  | Gewichteter Durchschnitt des Portfolios | 0,17 % | —
+ABSATZ: Die Kostenannahmen sind Größenordnungen und nicht die tatsächlichen Kostensätze der genannten Instrumente. Steuern sind nicht berücksichtigt. Beides verändert das Ergebnis und ist vor einer Anlageentscheidung zu konkretisieren.
+UEBERSCHRIFT: 9. Nachweis und Reproduzierbarkeit
+ABSATZ: Alle Angaben dieses Dokuments sind reproduzierbar: Gleiches Profil, gleicher Seed und gleicher Regelstand führen zu einem zeichengleichen Dokument. Der Inhaltshash des Entscheidungspfads ist unten ausgewiesen.
+TABELLE: 
+  | Angabe | Wert
+  | Fassung des Regelwerks | capacity 1.1.0 · classes 1.1.0 · glidepath 1.0.0 · goals 1.2.0 · knowledge 1.0.0 · portfolio 1.0.0 · simulation 1.0.0 · tolerance 1.1.0
+  | Datenstand (Kurzhash) | 1dead02ee323
+  | Inhaltshash des Entscheidungspfads | d987b4e403237db3798ab2c55c61ec5bf0b3e20c03cdd977dff36d65a6610936
+  | Aufgezeichnete Entscheidungsschritte | 33
+  | Fassung der Software | 0.1.0
+  | Rechtsgrundlage der Dokumentation | Art. 54 Abs. 12 DelVO (EU) 2017/565 in Verbindung mit § 64 Abs. 4 WpHG

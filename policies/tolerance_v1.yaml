@@ -1,0 +1,161 @@
+# Punktetabelle der Risikobereitschaft (subjektive Achse).
+#
+# Gemessen wird, was ein Anleger an Schwankung TRAGEN WILL. Was er tragen KANN,
+# steht in capacity_v1.yaml. Die beiden Achsen werden über ein bindendes Minimum
+# verknüpft — die Mittelung wäre genau der Fehler, den dieses System vermeidet.
+#
+# Die Gewichtung stellt bewusst das Verhalten im Verlustfall über die
+# Selbsteinschätzung: Die Antwort auf ein beziffertes Verlustszenario ist
+# aussagekräftiger als die Frage, für wie risikofreudig sich jemand hält.
+version: "1.1.0"
+gueltig_ab: 2026-07-26
+beschreibung: >-
+  Bewertung der subjektiven Risikobereitschaft über fünf Items, darunter zwei
+  bezifferte Verlustszenarien.
+quelle: >-
+  Eigene Festlegung des Anbieters. Die Itemstruktur folgt der in der Praxis
+  üblichen Trennung von Selbsteinschätzung und szenariobasierter Erhebung; die
+  Punktwerte sind vom Anbieter gesetzt und liegen versioniert in dieser Datei,
+  nicht im Code.
+
+dimensionen:
+
+  verlustszenario_betrag:
+    beschreibung: >-
+      Höchster Rückgang des Anlagebetrags binnen zwölf Monaten, den der Anleger
+      ohne Verkauf aushalten würde. Die Stufen dieses Items werden dem Kunden
+      ausschließlich als konkrete Eurobeträge vorgelegt, nie als Prozentangaben
+      (siehe Block verlustszenarien). Die Aussage gilt für dieses Item; die
+      Items reaktion_auf_rueckgang und erfahrung_mit_schwankungen nennen den
+      hier festgelegten Prozentwert von 20 Prozent im Fragetext.
+    gewicht: 0.35
+    optionen:
+      S0: 0
+      S1: 20
+      S2: 40
+      S3: 65
+      S4: 85
+      S5: 100
+
+  reaktion_auf_rueckgang:
+    beschreibung: >-
+      Angekündigtes Verhalten nach einem Rückgang um 20 Prozent. Erfasst die
+      Neigung, im Tief zu verkaufen und den Verlust zu realisieren.
+    gewicht: 0.25
+    optionen:
+      SOFORT_VERKAUFEN: 0
+      TEILWEISE_VERKAUFEN: 25
+      ABWARTEN: 70
+      NACHKAUFEN: 100
+
+  erfahrung_mit_schwankungen:
+    beschreibung: >-
+      Ob der Anleger einen Rückgang von mehr als 20 Prozent bereits selbst
+      erlebt hat und wie er sich damals verhalten hat.
+    gewicht: 0.15
+    optionen:
+      NIE_ERLEBT: 30
+      ERLEBT_UND_VERKAUFT: 10
+      ERLEBT_UND_GEHALTEN: 90
+      ERLEBT_UND_NACHGEKAUFT: 100
+
+  selbsteinschaetzung:
+    beschreibung: >-
+      Selbsteingeschätzte Risikoneigung. Bewusst niedrig gewichtet, weil
+      Selbstauskünfte im Verlustfall regelmäßig überschätzt werden.
+    gewicht: 0.15
+    optionen:
+      SEHR_SICHERHEITSORIENTIERT: 0
+      SICHERHEITSORIENTIERT: 25
+      AUSGEWOGEN: 55
+      WACHSTUMSORIENTIERT: 80
+      CHANCENORIENTIERT: 100
+
+  entnahmedisziplin:
+    beschreibung: >-
+      Wahrscheinlichkeit einer vorzeitigen Entnahme vor dem Zieltermin. Eine
+      hohe Entnahmeneigung senkt die tragbare Schwankung unabhängig von der
+      erklärten Risikoneigung.
+    gewicht: 0.10
+    optionen:
+      SEHR_WAHRSCHEINLICH: 0
+      MOEGLICH: 40
+      UNWAHRSCHEINLICH: 80
+      AUSGESCHLOSSEN: 100
+
+# --- Verlustszenarien in Euro ---------------------------------------------
+# Die Anteile dienen ausschliesslich dazu, aus dem Bezugsbetrag die konkreten
+# Eurobetraege zu berechnen, die dem Kunden vorgelegt werden. Der Kunde sieht
+# die Prozentwerte nie. Begruendung im Docstring von
+# candor/profiling/tolerance.py.
+#
+# bezugsgroesse: eingezahltes_kapital = Startkapital + Sparrate * Restlaufzeit,
+# undiskontiert. Der daraus berechnete Verlustbetrag geht in keine Bewertung
+# ein — die Punkte haengen allein an der gewaehlten Stufe. Die Bezugsgroesse
+# selbst ist dagegen bewertungsrelevant: Sie ist zugleich Zaehler des
+# Klumpenrisikos in capacity_v1.yaml (Kriterium vermoegensanteil).
+verlustszenarien:
+  bezugsgroesse: eingezahltes_kapital
+  dimension: verlustszenario_betrag
+  stufen:
+    - id: S0
+      verlust_anteil: 0.00
+    - id: S1
+      verlust_anteil: 0.05
+    - id: S2
+      verlust_anteil: 0.10
+    - id: S3
+      verlust_anteil: 0.20
+    - id: S4
+      verlust_anteil: 0.35
+    - id: S5
+      verlust_anteil: 0.50
+
+# --- Konsistenzregeln -----------------------------------------------------
+# Treffen alle Bedingungen einer Regel zu, wird ein Widerspruch im Trace
+# vermerkt. Die Punktzahl bleibt unveraendert: Ein Widerspruch wird ausgewiesen,
+# nicht weggerechnet (Begruendung im Modul-Docstring von tolerance.py).
+konsistenzregeln:
+  - id: TOL-K1
+    beschreibung: >-
+      Der Kunde bezeichnet sich als chancenorientiert, wuerde aber schon einen
+      Rueckgang von hoechstens fuenf Prozent nicht aushalten.
+    bedingungen:
+      selbsteinschaetzung: [CHANCENORIENTIERT, WACHSTUMSORIENTIERT]
+      verlustszenario_betrag: [S0, S1]
+
+  - id: TOL-K2
+    beschreibung: >-
+      Der Kunde gibt an, bei einem Rueckgang nachzukaufen, hat in einer
+      frueheren Krise aber verkauft.
+    bedingungen:
+      reaktion_auf_rueckgang: [NACHKAUFEN]
+      erfahrung_mit_schwankungen: [ERLEBT_UND_VERKAUFT]
+
+  - id: TOL-K3
+    beschreibung: >-
+      Der Kunde haelt eine vorzeitige Entnahme fuer sehr wahrscheinlich,
+      bezeichnet sich zugleich aber als chancenorientiert.
+    bedingungen:
+      entnahmedisziplin: [SEHR_WAHRSCHEINLICH]
+      selbsteinschaetzung: [CHANCENORIENTIERT]
+
+  - id: TOL-K4
+    beschreibung: >-
+      Der Kunde wuerde einen Rueckgang von mindestens 35 Prozent aushalten,
+      gibt zugleich aber an, sofort zu verkaufen.
+    bedingungen:
+      verlustszenario_betrag: [S4, S5]
+      reaktion_auf_rueckgang: [SOFORT_VERKAUFEN]
+
+klassenschwellen:
+  - ab_punkte: 0
+    klasse: 1
+  - ab_punkte: 28
+    klasse: 2
+  - ab_punkte: 48
+    klasse: 3
+  - ab_punkte: 68
+    klasse: 4
+  - ab_punkte: 85
+    klasse: 5

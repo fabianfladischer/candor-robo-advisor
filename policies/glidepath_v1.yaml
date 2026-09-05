@@ -1,0 +1,30 @@
+# Regelbasierter Risikoabbau mit abnehmender Restlaufzeit.
+#
+# Begründung der Richtung: Ein Rückgang kurz vor dem Zieltermin lässt sich nicht
+# mehr aussitzen. Die zulässige Risikoklasse sinkt deshalb mit der Restlaufzeit,
+# unabhängig davon, wie hoch Tragfähigkeit und Bereitschaft ausfallen. Der
+# Glide-Path wirkt als weitere Obergrenze, nie als Untergrenze — er kann eine
+# Risikoklasse senken, aber niemals anheben.
+version: "1.0.0"
+gueltig_ab: 2026-07-26
+beschreibung: >-
+  Höchste zulässige Risikoklasse in Abhängigkeit von der Restlaufzeit bis zum
+  Zieltermin, in fünf Stufen.
+quelle: >-
+  Eigene Festlegung des Anbieters. Die Grundidee des mit der Restlaufzeit
+  sinkenden Aktienanteils entstammt der Lifecycle-Literatur; die konkreten
+  Stufengrenzen sind Festlegung des Anbieters und liegen versioniert in dieser
+  Datei, nicht im Code. Die Fundierung über eine belastbare Primärquelle steht
+  aus.
+
+stufen:
+  - restlaufzeit_monate_ab: 120
+    max_risikoklasse: 5
+  - restlaufzeit_monate_ab: 84
+    max_risikoklasse: 4
+  - restlaufzeit_monate_ab: 48
+    max_risikoklasse: 3
+  - restlaufzeit_monate_ab: 24
+    max_risikoklasse: 2
+  - restlaufzeit_monate_ab: 0
+    max_risikoklasse: 1

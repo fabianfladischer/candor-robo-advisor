@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "fetched_at": "2026-07-26T14:41:44+00:00",
+  "source": "Yahoo Finance (chart v8), ausschüttungsbereinigte Monatsschlusskurse",
+  "package_versions": {
+    "candor": "0.1.0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyarrow": "24.0.0",
+    "scipy": "1.18.0",
+    "python": "3.13.5"
+  },
+  "universe": [
+    {
+      "key": "EQ_DEV",
+      "label": "Industrieländer-Aktien",
+      "fund_name": "iShares MSCI World UCITS ETF USD (Dist)",
+      "isin": "IE00B0M62Q58",
+      "isin_status": "verifiziert (Namensidentität mit deutscher Notierung)",
+      "symbol": "IQQW.DE",
+      "exchange": "XETRA",
+      "currency": "EUR",
+      "wrapper": "UCITS-ETF"
+    },
+    {
+      "key": "EQ_EM",
+      "label": "Schwellenländer-Aktien",
+      "fund_name": "iShares MSCI EM UCITS ETF USD (Dist)",
+      "isin": "IE00B0M63177",
+      "isin_status": "verifiziert (Namensidentität mit deutscher Notierung)",
+      "symbol": "IQQE.DE",
+      "exchange": "XETRA",
+      "currency": "EUR",
+      "wrapper": "UCITS-ETF"
+    },
+    {
+      "key": "EQ_EUR",
+      "label": "Europa-Aktien",
+      "fund_name": "iShares STOXX Europe 600 UCITS ETF (DE) EUR (Dist)",
+      "isin": "DE0002635307",
+      "isin_status": "verifiziert (Direkttreffer)",
+      "symbol": "EXSA.DE",
+      "exchange": "XETRA",
+      "currency": "EUR",
+      "wrapper": "UCITS-ETF"
+    },
+    {
+      "key": "BD_GOV",
+      "label": "Euro-Staatsanleihen",
+      "fund_name": "iShares Euro Government Bond Capped 1.5-10.5yr UCITS ETF (DE)",
+      "isin": "DE000A0H0785",
+      "isin_status": "verifiziert (Direkttreffer)",
+      "symbol": "EXHF.DE",
+      "exchange": "XETRA",
+      "currency": "EUR",
+      "wrapper": "UCITS-ETF"
+    },
+    {
+      "key": "BD_CORP",
+      "label": "Euro-Unternehmensanleihen",
+      "fund_name": "iShares € Corp Bond Large Cap UCITS ETF EUR (Dist)",
+      "isin": "IE0032523478",
+      "isin_status": "verifiziert (Namensidentität mit deutscher Notierung)",
+      "symbol": "IBCS.DE",
+      "exchange": "XETRA",
+      "currency": "EUR",
+      "wrapper": "UCITS-ETF"
+    },
+    {
+      "key": "BD_SHORT",
+      "label": "Kurzläufer Euro",
+      "fund_name": "iShares eb.rexx Government Germany 1.5-2.5yr UCITS ETF (DE)",
+      "isin": "DE0006289473",
+      "isin_status": "verifiziert (Direkttreffer)",
+      "symbol": "EXHB.DE",
+      "exchange": "XETRA",
+      "currency": "EUR",
+      "wrapper": "UCITS-ETF"
+    },
+    {
+      "key": "RE",
+      "label": "Immobilienaktien Europa",
+      "fund_name": "iShares STOXX Europe 600 Real Estate UCITS ETF (DE)",
+      "isin": "DE000A0Q4R44",
+      "isin_status": "verifiziert (Direkttreffer)",
+      "symbol": "EXI5.DE",
+      "exchange": "XETRA",
+      "currency": "EUR",
+      "wrapper": "UCITS-ETF"
+    },
+    {
+      "key": "GOLD",
+      "label": "Gold",
+      "fund_name": "WisdomTree Physical Gold",
+      "isin": "JE00B1VS3770",
+      "isin_status": "verifiziert (Direkttreffer)",
+      "symbol": "PHAU.L",
+      "exchange": "LSE",
+      "currency": "USD",
+      "wrapper": "ETC"
+    }
+  ],
+  "known_limitations": [
+    {
+      "id": "L-DIST",
+      "measured_at": "2026-07-26",
+      "summary": "Ausschüttungen erst ab 2013/2014 im Feed der Quelle; Renditen der Jahre 2008–2013 sind reine Kursrenditen und unterschätzen die Gesamtrendite.",
+      "affected": "alle Instrumente außer GOLD (ETC, schüttet nicht aus)",
+      "first_distribution_year": "IQQW.DE 2014 · IQQE.DE 2014 · EXSA.DE 2013 · EXHF.DE 2013 · IBCS.DE 2014 · EXHB.DE 2013 · EXI5.DE 2013 · PHAU.L keine"
+    },
+    {
+      "id": "L-START",
+      "measured_at": "2026-07-26",
+      "summary": "Historie beginnt 2008-02 statt der geforderten 2007-01. Der Markthöchststand vom Oktober 2007 liegt davor, weshalb die Drawdowns der Finanzkrise zu niedrig ausgewiesen werden.",
+      "affected": "alle Instrumente",
+      "first_distribution_year": ""
+    }
+  ],
+  "files": [
+    {
+      "filename": "prices_eur_monthly.parquet",
+      "sha256": "29cbdbb244a9a552f27668d5321799fa68a6e9f7a6479586c663bb6334b25628",
+      "rows": 222,
+      "columns": [
+        "EQ_DEV",
+        "EQ_EM",
+        "EQ_EUR",
+        "BD_GOV",
+        "BD_CORP",
+        "BD_SHORT",
+        "RE",
+        "GOLD"
+      ],
+      "period_start": "2008-01",
+      "period_end": "2026-06"
+    },
+    {
+      "filename": "returns_eur_monthly.parquet",
+      "sha256": "1dead02ee323ceca0924f3fe750e6dfd4528125a6c2df21cc8a301fc90c276a6",
+      "rows": 221,
+      "columns": [
+        "EQ_DEV",
+        "EQ_EM",
+        "EQ_EUR",
+        "BD_GOV",
+        "BD_CORP",
+        "BD_SHORT",
+        "RE",
+        "GOLD"
+      ],
+      "period_start": "2008-02",
+      "period_end": "2026-06"
+    }
+  ]
+}

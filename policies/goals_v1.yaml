@@ -1,0 +1,124 @@
+# Schwellenwerte der Zielerreichung je Zielpriorität.
+#
+# Dies ist der Schwellenwert, an dem der Konfliktmodus hängt: Bleibt die
+# simulierte Erfolgswahrscheinlichkeit darunter, wird KEINE Empfehlung
+# ausgesprochen, sondern ein Konfliktbericht erzeugt (Art. 54 Abs. 10 DelVO).
+#
+# Die Werte liegen bewusst hier und nicht im Code: Sie sind die Stellschraube,
+# über die ein Anbieter seine Vorsicht kalibriert, und jede Änderung daran muss
+# versioniert und im Trace nachvollziehbar sein.
+version: "1.2.0"
+gueltig_ab: 2026-07-26
+beschreibung: >-
+  Mindest-Erfolgswahrscheinlichkeit je Zielpriorität als Auslöseschwelle der
+  Konfliktdiagnose.
+quelle: >-
+  Eigene Festlegung des Anbieters. Die Verordnung schreibt keine
+  Mindestwahrscheinlichkeit vor; die Werte sind eine Vorsichtskalibrierung des
+  Anbieters; sie liegen versioniert in dieser Datei, nicht im Code.
+
+mindest_erfolgswahrscheinlichkeit:
+  MUSS: 0.85
+  WUNSCH: 0.70
+
+# --- Pufferband -----------------------------------------------------------
+# Abstand zur Schwelle, unterhalb dessen eine Empfehlung zwar ergeht, aber mit
+# ausdruecklichem Hinweis auf den geringen Abstand (Ausgang
+# ERREICHBAR_MIT_PUFFER).
+#
+# Warum fuenf Prozentpunkte: Die Konvergenzanalyse weist bei 10 000 Pfaden einen
+# Standardfehler von rund 0,49 Prozentpunkten aus.
+# Fuenf Prozentpunkte entsprechen damit etwa dem Zehnfachen des Standardfehlers.
+# Die Einordnung eines Falls in eines der drei Faecher haengt dadurch nicht vom
+# Seed ab — genau das waere sonst der Fall, in dem ein Kunde beim zweiten Lauf
+# eine andere Auskunft bekaeme.
+#
+# Aenderung gegenueber Fassung 1.1.0: neu aufgenommen.
+pufferband: 0.05
+
+# --- Inflationsannahme ----------------------------------------------------
+# Wird fuer die Trennung von nominaler und realer Betrachtung benoetigt.
+# Der Wert ist eine Annahme, keine Prognose. Er entspricht dem mittelfristigen
+# Inflationsziel des Eurosystems von 2 % fuer den Euroraum; damit ist er
+# nachvollziehbar begruendet, ohne eine eigene Schaetzung zu behaupten.
+# Aufrufer koennen ihn jederzeit ueberschreiben.
+#
+# Aenderung gegenueber Fassung 1.0.0: neu aufgenommen.
+inflationsannahme_jaehrlich: 0.02
+
+# --- Zuteilungsreihenfolge bei mehreren Zielen ----------------------------
+# Erstes Sortierkriterium der Sparratenzuteilung. Innerhalb derselben
+# Prioritaet entscheiden Zieltermin (frueher zuerst) und, zur Sicherung der
+# Reproduzierbarkeit, die Zielkennung. Siehe candor/goals/model.py.
+zuteilungsreihenfolge: [MUSS, WUNSCH]
+
+# --- Zielkatalog ----------------------------------------------------------
+# Vorbelegungen je Zieltyp. Jede laesst sich beim Anlegen eines Ziels
+# ueberschreiben; ohne Angabe gilt der hier hinterlegte Wert.
+#
+# mindest_erfolgswahrscheinlichkeit: null bedeutet, dass der Schwellenwert der
+# Prioritaet aus mindest_erfolgswahrscheinlichkeit gilt. Ein Zieltyp kann den
+# Wert nur ANHEBEN, nicht senken — die Absicherung steht im Modell.
+#
+# termin_verschiebbar / betrag_reduzierbar steuern die Machbarkeitsbewertung der
+# Stellschrauben S2 und S3 im Konfliktbericht. Ein Ausbildungstermin haengt am
+# Alter des Kindes und ist nicht verschiebbar; eine Notfallreserve, die spaeter
+# oder kleiner kommt, ist keine Notfallreserve mehr. Die Altersvorsorge laesst
+# sich dagegen durch laengeres Arbeiten strecken.
+zieltypen:
+
+  ALTERSVORSORGE:
+    bezeichnung: "Altersvorsorge"
+    beschreibung: >-
+      Aufbau einer zusaetzlichen Altersversorgung. Eine Verfehlung laesst sich
+      im Ruhestand nicht mehr durch Mehrarbeit ausgleichen.
+    standardhorizont_monate: 300
+    standardprioritaet: MUSS
+    mindest_erfolgswahrscheinlichkeit: 0.90
+    termin_verschiebbar: true
+    betrag_reduzierbar: true
+
+  IMMOBILIEN_EIGENKAPITAL:
+    bezeichnung: "Eigenkapital für eine Immobilie"
+    beschreibung: >-
+      Ansparen des Eigenkapitalanteils. Der Termin ist meist an einen
+      Kaufzeitpunkt gebunden und kaum verschiebbar.
+    standardhorizont_monate: 84
+    standardprioritaet: MUSS
+    mindest_erfolgswahrscheinlichkeit: 0.85
+    termin_verschiebbar: true
+    betrag_reduzierbar: true
+
+  AUSBILDUNG:
+    bezeichnung: "Ausbildungssparen"
+    beschreibung: >-
+      Ruecklage fuer Ausbildung oder Studium. Der Termin ergibt sich aus dem
+      Alter des Kindes und ist fest.
+    standardhorizont_monate: 180
+    standardprioritaet: MUSS
+    mindest_erfolgswahrscheinlichkeit: 0.85
+    termin_verschiebbar: false
+    betrag_reduzierbar: false
+
+  LIQUIDITAETSPUFFER:
+    bezeichnung: "Liquiditätspuffer"
+    beschreibung: >-
+      Aufbau der Notfallreserve. Vorrangig vor allen anderen Zielen, weil ihr
+      Fehlen das K.-o.-Kriterium der Tragfaehigkeit ausloest.
+    standardhorizont_monate: 24
+    standardprioritaet: MUSS
+    mindest_erfolgswahrscheinlichkeit: 0.95
+    termin_verschiebbar: false
+    betrag_reduzierbar: false
+
+  VERMOEGENSAUFBAU:
+    bezeichnung: "Freier Vermögensaufbau"
+    beschreibung: >-
+      Aufbau von Vermoegen ohne festen Verwendungszweck. Ein Verfehlen des
+      Zielbetrags ist tragbar, weil kein Termin daran haengt.
+    standardhorizont_monate: 120
+    standardprioritaet: WUNSCH
+    mindest_erfolgswahrscheinlichkeit: null
+    termin_verschiebbar: true
+    betrag_reduzierbar: true
+

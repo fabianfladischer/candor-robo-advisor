@@ -1,0 +1,57 @@
+# Parameter der Simulation und Kostenannahmen.
+#
+# Eigene Policy-Datei neben den Profil-, Klassen- und Zielpolicies.
+# Begruendung: Simulationsparameter gehoeren weder zu einer Profilachse noch zu
+# den Risikoklassen noch zum Zielkatalog. Sie in eine dieser Dateien zu
+# zwaengen haette deren Zweck verwischt.
+version: "1.0.0"
+gueltig_ab: 2026-07-26
+beschreibung: >-
+  Parameter des Block-Bootstrap, Rebalancing-Frequenz und Kostenannahmen je
+  Assetklasse fuer die Simulation der Zielerreichung.
+quelle: >-
+  Eigene Festlegung des Anbieters. Blocklaenge und Pfadzahl sind im
+  Kommentarblock unten begruendet; die Kostenwerte sind
+  Groessenordnungsannahmen und ausdruecklich NICHT die tatsaechlichen
+  Kostensaetze der ausgewaehlten Instrumente. Deren Verifikation gegen die
+  Anbieterunterlagen steht aus.
+
+# --- Block-Bootstrap ------------------------------------------------------
+# blocklaenge_monate: Ein Block umfasst zwoelf aufeinanderfolgende Monate. Damit
+#   bleiben Autokorrelation und Volatilitaetscluster innerhalb eines Jahres
+#   erhalten. Gezogen wird ein Block simultan ueber alle Assetklassen –
+#   derselbe Zeitindex fuer jede Reihe –, sodass auch die Korrelationsstruktur
+#   der Krisenmonate erhalten bleibt.
+# standard_pfade: Zehntausend Pfade. Der Standardfehler der
+#   Erfolgswahrscheinlichkeit liegt damit bei rund 0,49 Prozentpunkten und ist
+#   klein gegen das Pufferband von fuenf Prozentpunkten aus goals_v1.yaml.
+blocklaenge_monate: 12
+standard_pfade: 10000
+basis_seed: 20260726
+
+# --- Rebalancing ----------------------------------------------------------
+# Abstand zwischen zwei Rueckfuehrungen auf die Zielgewichte, in Monaten.
+# Zwoelf Monate sind der uebliche Kompromiss zwischen Gewichtstreue und
+# Transaktionskosten.
+rebalancing_monate: 12
+
+# --- Kostenannahmen -------------------------------------------------------
+# ter_jaehrlich:    laufende Kosten des Instruments je Jahr, wird monatlich
+#                   geometrisch abgezogen.
+# spread_einmalig:  Transaktionskosten je gehandeltem Euro, einseitig. Faellt an
+#                   bei der Erstanlage, bei jeder Einzahlung und bei jedem
+#                   Rebalancing-Trade.
+#
+# ACHTUNG: Diese Werte sind Annahmen in plausibler Groessenordnung, keine
+# recherchierten Kostensaetze der ausgewaehlten ETFs. Sie sind bewusst eher zu
+# hoch als zu niedrig angesetzt — eine zu niedrige Kostenannahme wuerde die
+# Erfolgswahrscheinlichkeit systematisch ueberschaetzen.
+kosten:
+  EQ_DEV:   {ter_jaehrlich: 0.0020, spread_einmalig: 0.0005}
+  EQ_EM:    {ter_jaehrlich: 0.0025, spread_einmalig: 0.0015}
+  EQ_EUR:   {ter_jaehrlich: 0.0020, spread_einmalig: 0.0005}
+  BD_GOV:   {ter_jaehrlich: 0.0015, spread_einmalig: 0.0005}
+  BD_CORP:  {ter_jaehrlich: 0.0020, spread_einmalig: 0.0010}
+  BD_SHORT: {ter_jaehrlich: 0.0015, spread_einmalig: 0.0005}
+  RE:       {ter_jaehrlich: 0.0040, spread_einmalig: 0.0015}
+  GOLD:     {ter_jaehrlich: 0.0025, spread_einmalig: 0.0010}

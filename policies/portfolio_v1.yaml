@@ -1,0 +1,162 @@
+# Parameter der Portfoliokonstruktion.
+#
+# Getrennt von classes_v1.yaml: Dort stehen die *Restriktionen* (was darf ein
+# Portfolio enthalten), hier die *Verfahrensparameter* (wie wird geschätzt und
+# optimiert). Die Trennung folgt der Zuständigkeit — Bandbreiten sind eine
+# Anlagerichtlinie, Schätzfenster sind eine Methodenentscheidung.
+#
+# Zwingende Eigenschaften, die der Loader prüft:
+#   - Schätzfenster > Zahl der Assetklassen (sonst ist die Stichprobenkovarianz
+#     singulär und die Optimierung nicht eindeutig lösbar)
+#   - Mindestuniversum >= 2 (mit einer Position gibt es nichts zu optimieren)
+#   - jede Assetklasse in der Nachhaltigkeitseinstufung genannt
+version: "1.0.0"
+gueltig_ab: 2026-07-26
+beschreibung: >-
+  Schätzverfahren für Erwartungswert und Kovarianz, Parameter der restringierten
+  Mean-Variance-Optimierung, Vorgaben des rollierenden Out-of-Sample-Backtests
+  und der Nachhaltigkeitsfilter vor der Optimierung.
+quelle: >-
+  Methodenparameter nach Ledoit & Wolf (2004) für die Kovarianzschrumpfung und
+  Jorion (1986) für die Schrumpfung der Erwartungswerte; Backtest-Aufbau nach
+  DeMiguel, Garlappi & Uppal (2009). Die konkreten Fensterlängen sind Festlegung
+  des Anbieters und liegen versioniert in dieser Datei, nicht im Code. Die
+  Nachhaltigkeitseinstufung ist eine ANNAHME und keine erhobene Größe – siehe
+  Abschnitt `nachhaltigkeit`.
+
+# --- Schätzung der Momente -------------------------------------------------
+
+schaetzung:
+  # Beide Verfahren werden gerechnet und ausgewiesen; welches in die Optimierung
+  # eingeht, entscheidet dieser Schlüssel.
+  erwartungswert_verfahren: shrinkage   # historisch | shrinkage
+
+  # Schrumpfungsziel der Erwartungswerte. `gesamtmittel` zieht jede Assetklasse
+  # zum gleichgewichteten Mittel aller Assetklassen (Grand Mean).
+  erwartungswert_ziel: gesamtmittel
+
+  # Schrumpfungsintensität der Erwartungswerte. `null` = analytisch nach
+  # Jorion (1986) aus den Daten bestimmt. Ein fester Wert überschreibt das.
+  erwartungswert_intensitaet: null
+
+  # Kovarianzschätzer. LedoitWolf bestimmt die Intensität selbst; der Wert wird
+  # ausgewiesen und nicht verborgen.
+  kovarianz_verfahren: ledoit_wolf      # ledoit_wolf | stichprobe
+
+  # Proxy für den risikofreien Zins der Sharpe Ratio. Eine Assetklasse des
+  # Universums oder `null` für null Prozent. BD_SHORT bildet deutsche
+  # Kurzläufer ab und ist damit die datengestützte Wahl: Sie ist im Snapshot
+  # enthalten und braucht keine externe, nicht reproduzierbare Zinsreihe.
+  risikofreier_proxy: BD_SHORT
+
+# --- Optimierung -----------------------------------------------------------
+
+optimierung:
+  # Reihenfolge der Solver. Der erste, der einen zulässigen Status meldet,
+  # gewinnt. Der Wechsel wird im Trace vermerkt (Prinzip P2).
+  solver_reihenfolge: [CLARABEL, SCS]
+
+  # Rückfallverfahren, wenn kein cvxpy-Solver ein Optimum meldet.
+  fallback: slsqp
+
+  # Toleranz beim Prüfen der Gewichtssumme und der Bandbreiten im Ergebnis.
+  restriktionstoleranz: 1.0e-6
+
+  # Zielrendite der Nebenbedingung w'µ >= r_ziel. `bandmitte` setzt sie auf die
+  # erwartete Rendite der regelbasierten Referenzallokation derselben Klasse.
+  # Damit ist die Optimierung an denselben Maßstab gebunden, gegen den sie
+  # antritt, und kann nicht durch eine beliebig niedrige Schranke gewinnen.
+  zielrendite_quelle: referenzallokation
+
+  # Falls die Zielrendite die Restriktionen unerfüllbar macht, wird sie in
+  # diesen Schritten gesenkt, bis das Problem lösbar ist. Jede Senkung wird im
+  # Trace vermerkt — sie ist eine Abweichung von der Vorgabe, keine Feinheit.
+  zielrendite_absenkung_schritt: 0.0005
+  zielrendite_absenkung_max_schritte: 40
+
+# --- Out-of-Sample-Backtest ------------------------------------------------
+
+backtest:
+  schaetzfenster_monate: 60     # rollierendes Schätzfenster
+  haltedauer_monate: 12         # Haltedauer bis zum nächsten Rebalancing
+  monate_pro_jahr: 12
+
+  # Risikoklasse, deren Restriktionen im Backtest gelten. Der Vergleich gegen
+  # 1/N ist nur bei fester Klasse aussagekräftig.
+  risikoklasse: 3
+
+# --- Nachhaltigkeitsfilter (Art. 2 Nr. 7 DelVO 2017/565 i. d. F. 2021/1253) --
+
+nachhaltigkeit:
+  # Untergrenze des gefilterten Universums. Wird sie unterschritten, bricht die
+  # Optimierung mit einem definierten Fehler ab, statt die Präferenz still
+  # aufzuweichen (Invariante I8, Prinzip P5).
+  mindestuniversum: 4
+
+  # ACHTUNG — ANNAHME, KEINE ERHOBENE GRÖSSE.
+  #
+  # Die folgenden Einstufungen sind NICHT aus den Verkaufsprospekten, den
+  # SFDR-Offenlegungen oder den Taxonomie-Quoten der ausgewählten
+  # Instrumente erhoben. Sie sind eine plausible Vorbelegung, damit der
+  # Filtermechanismus prüfbar ist. Die Verifikation gegen die Prospekte steht
+  # aus. Der Filter ist als Mechanismus zu verstehen, NICHT als Aussage über
+  # die Nachhaltigkeit konkreter Fonds.
+  #
+  # Bedeutung der drei Schlüssel entspricht den drei Ausprägungen der
+  # Verordnung: taxonomie (VO 2020/852), sfdr (Art. 2 Nr. 17 VO 2019/2088),
+  # pai (wichtigste nachteilige Auswirkungen).
+  einstufung:
+    EQ_DEV:
+      taxonomie: true
+      sfdr: true
+      pai: true
+      hinweis: >-
+        Breiter Industrieländerindex; für diese Anlageklasse sind ESG-Varianten
+        marktüblich verfügbar.
+    EQ_EM:
+      taxonomie: false
+      sfdr: true
+      pai: true
+      hinweis: >-
+        Schwellenländer: Datenlage zur Taxonomiequote regelmäßig unzureichend.
+    EQ_EUR:
+      taxonomie: true
+      sfdr: true
+      pai: true
+      hinweis: >-
+        Europäischer Index; Taxonomieberichterstattung der Emittenten am weitesten
+        fortgeschritten.
+    BD_GOV:
+      taxonomie: false
+      sfdr: false
+      pai: true
+      hinweis: >-
+        Staatsanleihen sind keine Investition in wirtschaftliche Tätigkeiten im
+        Sinne der Taxonomie.
+    BD_CORP:
+      taxonomie: true
+      sfdr: true
+      pai: true
+      hinweis: >-
+        Unternehmensanleihen; Zuordnung zu Tätigkeiten grundsätzlich möglich.
+    BD_SHORT:
+      taxonomie: false
+      sfdr: false
+      pai: true
+      hinweis: >-
+        Deutsche Staatsanleihen kurzer Laufzeit; wie BD_GOV.
+    RE:
+      taxonomie: true
+      sfdr: true
+      pai: true
+      hinweis: >-
+        Immobilienaktien; Gebäudesektor ist in der Taxonomie ausdrücklich erfasst.
+    GOLD:
+      taxonomie: false
+      sfdr: false
+      pai: false
+      hinweis: >-
+        ETC auf physisches Gold. Kein Fonds, keine SFDR-Offenlegungspflicht als
+        Finanzprodukt, keine wirtschaftliche Tätigkeit im Sinne der Taxonomie.
+        Diese Einstufung folgt der Rechtsform und ist die einzige des Blocks,
+        die nicht auf einer Annahme über Datenverfügbarkeit beruht.

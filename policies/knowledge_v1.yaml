@@ -1,0 +1,72 @@
+# Kenntnisse und Erfahrungen -> Deckelung der Produktkomplexität.
+#
+# Rechtsgrundlage: Art. 55 DelVO (EU) 2017/565. Kenntnisse und Erfahrungen sind
+# eine EIGENSTÄNDIGE Schranke, keine dritte Punktzahl, die mit Tragfähigkeit und
+# Bereitschaft verrechnet wird. Wer die Anlageform nicht versteht, darf sie auch
+# dann nicht empfohlen bekommen, wenn er sie sich wirtschaftlich leisten könnte.
+#
+# Lesart: Eine Gattung "schaltet frei", wenn ALLE drei Mindestanforderungen
+# erfüllt sind. Maßgeblich ist die höchste so freigeschaltete Risikoklasse.
+# Gattungen ohne Angabe zählen als nicht erfüllt — was nicht erhoben wurde,
+# darf nicht zur Freigabe führen.
+version: "1.0.0"
+gueltig_ab: 2026-07-26
+beschreibung: >-
+  Abbildung von Kenntnissen und Erfahrungen je Instrumentengattung auf die
+  höchste zulässige Risikoklasse nach Art. 55 DelVO (EU) 2017/565.
+quelle: >-
+  Anforderungsgegenstand aus Art. 55 DelVO (EU) 2017/565; die konkreten
+  Schwellenwerte für Erfahrungsdauer und Transaktionshäufigkeit sind eigene
+  Festlegung des Anbieters und liegen versioniert in dieser Datei, nicht im Code.
+
+ohne_nachweis_max_risikoklasse: 1
+
+gattungen:
+
+  GELDMARKT:
+    schaltet_risikoklasse_frei: 1
+    mindestkenntnis: "Grundkenntnisse"
+    mindesterfahrung_jahre: 0
+    mindesttransaktionen_pro_jahr: 0
+
+  ANLEIHEN_IG:
+    schaltet_risikoklasse_frei: 2
+    mindestkenntnis: "Grundkenntnisse"
+    mindesterfahrung_jahre: 1
+    mindesttransaktionen_pro_jahr: 1
+
+  FONDS_UCITS:
+    schaltet_risikoklasse_frei: 3
+    mindestkenntnis: "Grundkenntnisse"
+    mindesterfahrung_jahre: 2
+    mindesttransaktionen_pro_jahr: 1
+
+  ETF:
+    schaltet_risikoklasse_frei: 4
+    mindestkenntnis: "erweiterte Kenntnisse"
+    mindesterfahrung_jahre: 2
+    mindesttransaktionen_pro_jahr: 2
+
+  AKTIEN:
+    schaltet_risikoklasse_frei: 5
+    mindestkenntnis: "erweiterte Kenntnisse"
+    mindesterfahrung_jahre: 3
+    mindesttransaktionen_pro_jahr: 4
+
+  ANLEIHEN_HY:
+    schaltet_risikoklasse_frei: 4
+    mindestkenntnis: "erweiterte Kenntnisse"
+    mindesterfahrung_jahre: 2
+    mindesttransaktionen_pro_jahr: 2
+
+  ZERTIFIKATE:
+    schaltet_risikoklasse_frei: 5
+    mindestkenntnis: "umfassende Kenntnisse"
+    mindesterfahrung_jahre: 3
+    mindesttransaktionen_pro_jahr: 4
+
+  DERIVATE:
+    schaltet_risikoklasse_frei: 5
+    mindestkenntnis: "umfassende Kenntnisse"
+    mindesterfahrung_jahre: 3
+    mindesttransaktionen_pro_jahr: 6

@@ -1,0 +1,148 @@
+# Risikoklassen 1 bis 5 mit Assetklassen-Bandbreiten.
+#
+# Die Bänder sind PFLICHT-RESTRIKTIONEN der Optimierung, keine
+# Zielgewichte. Sie begrenzen, was die Mean-Variance-Optimierung überhaupt
+# ausgeben darf, und verhindern damit die bekannte Neigung der MVO, auf wenige
+# Positionen mit geschätzt hoher Rendite zu konzentrieren (Michaud 1989).
+#
+# Zwingende Eigenschaften, die der Loader prüft:
+#   - Summe der Untergrenzen <= 1 <= Summe der Obergrenzen (Invariante I5)
+#   - keine Einzelobergrenze über der Positionsobergrenze
+#   - Aktienquote monoton steigend über die Klassen (Invariante I6)
+#   - erwarteter Maximalverlust monoton steigend über die Klassen
+#
+# ZUR GRÖSSE `erwarteter_maximalverlust` (ergänzt in Fassung 1.1.0):
+# Sie ist die QUANTITATIVE Fassung dessen, was `beschreibung` in Worten sagt,
+# und die Zahl, gegen die der historische Stresstest prüft. Sie ist nicht frei
+# gewählt, sondern an die Verlustszenario-Leiter aus `tolerance_v1.yaml`
+# gebunden: Dort werden dem Kunden die Stufen S1 bis S5 mit 5, 10, 20, 35 und
+# 50 Prozent Verlust vorgelegt. Klasse N entspricht der Stufe S_N. Wer Stufe S3
+# (20 Prozent) hinnimmt, kann Klasse 3 erreichen — und Klasse 3 sagt ihm
+# denselben Wert als Erwartung zu. Ohne diese Bindung wären Befragung und
+# Zusage zwei unverbundene Zahlenreihen.
+#
+# Der Wert ist eine ERWARTUNG, keine Garantie: Er beziffert, womit der Kunde
+# rechnen muss, nicht eine Obergrenze des möglichen Verlusts. Ob er historisch
+# standhält, prüft der historische Stresstest.
+version: "1.1.0"
+gueltig_ab: 2026-07-26
+beschreibung: >-
+  Fünf Risikoklassen mit Bandbreiten je Assetgruppe und je Assetklasse sowie
+  einer Positionsobergrenze je Klasse.
+quelle: >-
+  Eigene Festlegung des Anbieters. Die Staffelung der Aktienquote folgt der in
+  der Praxis üblichen Fünfteilung; die konkreten Bandgrenzen sind Festlegung
+  des Anbieters und liegen versioniert in dieser Datei, nicht im Code. Die
+  Assetklassen entsprechen dem Anlageuniversum (candor/data/universe_meta.py).
+
+gruppenzuordnung:
+  aktien: [EQ_DEV, EQ_EM, EQ_EUR]
+  anleihen: [BD_GOV, BD_CORP, BD_SHORT]
+  sachwerte: [RE, GOLD]
+
+risikoklassen:
+
+  1:
+    name: "sehr konservativ"
+    beschreibung: >-
+      Kapitalerhalt steht im Vordergrund. Schwankungen werden weitgehend
+      vermieden, dafür ist der reale Werterhalt nach Inflation nicht gesichert.
+    positionsobergrenze: 0.60
+    erwarteter_maximalverlust: 0.05
+    gruppen:
+      aktien: {min: 0.00, max: 0.10}
+      anleihen: {min: 0.80, max: 1.00}
+      sachwerte: {min: 0.00, max: 0.10}
+    einzelwerte:
+      EQ_DEV:   {min: 0.00, max: 0.10}
+      EQ_EM:    {min: 0.00, max: 0.00}
+      EQ_EUR:   {min: 0.00, max: 0.05}
+      BD_GOV:   {min: 0.30, max: 0.60}
+      BD_CORP:  {min: 0.00, max: 0.30}
+      BD_SHORT: {min: 0.20, max: 0.60}
+      RE:       {min: 0.00, max: 0.05}
+      GOLD:     {min: 0.00, max: 0.05}
+
+  2:
+    name: "konservativ"
+    beschreibung: >-
+      Überwiegend Anleihen mit einer kleinen Aktienbeimischung. Rückgänge sollen
+      begrenzt bleiben, ein moderater realer Werterhalt wird angestrebt.
+    positionsobergrenze: 0.55
+    erwarteter_maximalverlust: 0.10
+    gruppen:
+      aktien: {min: 0.10, max: 0.30}
+      anleihen: {min: 0.60, max: 0.85}
+      sachwerte: {min: 0.00, max: 0.15}
+    einzelwerte:
+      EQ_DEV:   {min: 0.05, max: 0.25}
+      EQ_EM:    {min: 0.00, max: 0.05}
+      EQ_EUR:   {min: 0.00, max: 0.10}
+      BD_GOV:   {min: 0.20, max: 0.55}
+      BD_CORP:  {min: 0.05, max: 0.35}
+      BD_SHORT: {min: 0.10, max: 0.50}
+      RE:       {min: 0.00, max: 0.08}
+      GOLD:     {min: 0.00, max: 0.08}
+
+  3:
+    name: "ausgewogen"
+    beschreibung: >-
+      Aktien und Anleihen etwa gleichgewichtig. Zwischenzeitliche Rückgänge im
+      mittleren zweistelligen Prozentbereich sind möglich und eingeplant.
+    positionsobergrenze: 0.50
+    erwarteter_maximalverlust: 0.20
+    gruppen:
+      aktien: {min: 0.30, max: 0.50}
+      anleihen: {min: 0.40, max: 0.65}
+      sachwerte: {min: 0.00, max: 0.20}
+    einzelwerte:
+      EQ_DEV:   {min: 0.15, max: 0.40}
+      EQ_EM:    {min: 0.00, max: 0.10}
+      EQ_EUR:   {min: 0.00, max: 0.15}
+      BD_GOV:   {min: 0.10, max: 0.45}
+      BD_CORP:  {min: 0.05, max: 0.35}
+      BD_SHORT: {min: 0.00, max: 0.35}
+      RE:       {min: 0.00, max: 0.10}
+      GOLD:     {min: 0.00, max: 0.10}
+
+  4:
+    name: "wachstumsorientiert"
+    beschreibung: >-
+      Aktienschwerpunkt mit Anleihen als Puffer. Deutliche Rückgänge sind zu
+      erwarten und werden zugunsten höherer Ertragserwartung in Kauf genommen.
+    positionsobergrenze: 0.55
+    erwarteter_maximalverlust: 0.35
+    gruppen:
+      aktien: {min: 0.50, max: 0.75}
+      anleihen: {min: 0.15, max: 0.45}
+      sachwerte: {min: 0.00, max: 0.20}
+    einzelwerte:
+      EQ_DEV:   {min: 0.30, max: 0.55}
+      EQ_EM:    {min: 0.00, max: 0.15}
+      EQ_EUR:   {min: 0.00, max: 0.20}
+      BD_GOV:   {min: 0.05, max: 0.30}
+      BD_CORP:  {min: 0.00, max: 0.30}
+      BD_SHORT: {min: 0.00, max: 0.20}
+      RE:       {min: 0.00, max: 0.12}
+      GOLD:     {min: 0.00, max: 0.10}
+
+  5:
+    name: "chancenorientiert"
+    beschreibung: >-
+      Nahezu vollständig in Sachwerten investiert. Rückgänge von mehr als vierzig
+      Prozent sind historisch belegt und müssen ausgehalten werden können.
+    positionsobergrenze: 0.65
+    erwarteter_maximalverlust: 0.50
+    gruppen:
+      aktien: {min: 0.75, max: 0.95}
+      anleihen: {min: 0.00, max: 0.20}
+      sachwerte: {min: 0.00, max: 0.20}
+    einzelwerte:
+      EQ_DEV:   {min: 0.40, max: 0.65}
+      EQ_EM:    {min: 0.05, max: 0.25}
+      EQ_EUR:   {min: 0.00, max: 0.25}
+      BD_GOV:   {min: 0.00, max: 0.15}
+      BD_CORP:  {min: 0.00, max: 0.15}
+      BD_SHORT: {min: 0.00, max: 0.10}
+      RE:       {min: 0.00, max: 0.15}
+      GOLD:     {min: 0.00, max: 0.10}

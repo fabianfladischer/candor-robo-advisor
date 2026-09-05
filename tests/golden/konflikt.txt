@@ -1,0 +1,90 @@
+TITEL: Konfliktbericht — keine Anlageempfehlung
+BETREFF: Konfliktbericht K-2026-0147/Z-2026-0147-A
+
+TITEL: Konfliktbericht — keine Anlageempfehlung
+HINWEIS: [REC-CONFLICT] Die geforderte Erfolgswahrscheinlichkeit wird unter der zulässigen Risikoklasse nicht erreicht. Es ergeht **keine Anlageempfehlung**. Rechtsgrundlage: Art. 54 Abs. 10 DelVO (EU) 2017/565 — ein Geschäft, das für den Kunden nicht geeignet ist, darf nicht empfohlen werden.
+ABSATZ: Kunde K-2026-0147 · Ziel Z-2026-0147-A · Stichtag 26.07.2026
+UEBERSCHRIFT: 1. Zweck und Rechtsgrundlage
+ABSATZ: Dieses Dokument tritt an die Stelle einer Geeignetheitserklärung. Es dokumentiert, weshalb für das erhobene Anlageziel unter der zulässigen Risikoklasse **keine** Empfehlung ausgesprochen werden kann, und beziffert, was sich ändern müsste.
+ABSATZ: Rechtsgrundlage der Verweigerung: Art. 54 Abs. 10 DelVO (EU) 2017/565.
+UEBERSCHRIFT: 2. Anlageziel und zulässige Risikoklasse
+TABELLE: 
+  | Angabe | Wert
+  | Zielkennung | Z-2026-0147-A
+  | Zieltyp | Altersvorsorge
+  | Priorität | MUSS-Ziel
+  | Zielbetrag | 300 000,00 €
+  | Anlagehorizont | 299 Monate (24,92 Jahre)
+  | Startkapital | 20 000,00 €
+  | Monatliche Sparrate | 500,00 €
+  | Erforderliche Rendite nominal p. a. | 3,87 %
+  | Zulässige Risikoklasse | 4 — bindend: Kenntnisse und Erfahrungen
+ABSATZ: [CLS-MIN] Aus dem Profil ergibt sich die Risikoklasse als Minimum aus Risikotragfähigkeit (4) und Risikobereitschaft (4), zusätzlich begrenzt durch die Kenntnisse und Erfahrungen (4): Risikoklasse 4, bindend ist die Achse Kenntnisse und Erfahrungen. Maßgeblich für die Anlageentscheidung ist Risikoklasse 4; eine Abweichung von der Profilklasse beruht auf der zusätzlichen Deckelung durch die verbleibende Restlaufzeit (Glide-Path). Die Achsen werden ausdrücklich nicht gemittelt: Eine Mittelung würde eine fehlende Voraussetzung durch eine andere ausgleichen, die sie nicht ersetzen kann.
+UEBERSCHRIFT: 3. Befund
+AUFZAEHLUNG: [REC-OUT] 
+  - Ziel Z-2026-0147-A (Altersvorsorge, MUSS-Ziel): 300 000,00 € in 299 Monaten.
+  - Gefordert sind 90,00 % Erfolgswahrscheinlichkeit, erreicht werden 84,56 % — es fehlen 5,44 Prozentpunkte.
+  - Maßgeblich ist Risikoklasse 4; sie wird durch die Achse „Kenntnisse und Erfahrungen“ begrenzt.
+  - Im Misserfolgsfall fehlen im Mittel 48 227 €.
+  - Eine Anlageempfehlung ergeht nicht. Rechtsgrundlage: Art. 54 Abs. 10 DelVO (EU) 2017/565.
+--- Seitenumbruch ---
+UEBERSCHRIFT: 4. Stellschrauben
+TABELLE: 
+  |  | Stellschraube | Ist | Erforderlich | Machbarkeit
+  | S1 | Erforderliche monatliche Sparrate | 500,00 € | 557,70 € | umsetzbar
+  | S2 | Erforderlicher Anlagehorizont | 299 Monate | 317 Monate | umsetzbar
+  | S3 | Erreichbarer Zielbetrag | 300 000,00 € | 274 039,53 € | umsetzbar
+ABSATZ: [REC-LEVER] Stellschraube S1 — Erforderliche monatliche Sparrate: gegenwärtig 500,00 €, erforderlich 557,70 €. Erforderlich sind 557,70 € monatlich; die freie Sparquote beträgt 600,00 €. Umsetzbar, sofern kein anderes Ziel denselben Betrag beansprucht.
+ABSATZ: [REC-LEVER] Stellschraube S2 — Erforderlicher Anlagehorizont: gegenwärtig 299 Monate, erforderlich 317 Monate. Der Zieltermin müsste um 18 Monate (1,5 Jahre) nach hinten verschoben werden. Für den Zieltyp „Altersvorsorge“ ist das laut Zielkatalog möglich.
+ABSATZ: [REC-LEVER] Stellschraube S3 — Erreichbarer Zielbetrag: gegenwärtig 300 000,00 €, erforderlich 274 039,53 €. Erreichbar sind 274 039,53 € statt 300 000,00 €, also 25 960,47 € oder 8,7 % weniger. Für den Zieltyp „Altersvorsorge“ ist eine Anpassung laut Zielkatalog möglich.
+UNTERUEBERSCHRIFT: 4.1 Einordnung
+ABSATZ: Umsetzbar sind: S1, S2, S3. Die Stellschrauben sind keine Empfehlung, sondern die quantifizierte Antwort auf die Frage, was sich ändern müsste. Welche davon in Betracht kommt, ist im Beratungsgespräch zu klären.
+--- Seitenumbruch ---
+UEBERSCHRIFT: 5. Erfasstes Kundenprofil
+TABELLE: 
+  | Angabe | Wert
+  | Kundenkennung | K-2026-0147
+  | Monatliches Nettoeinkommen | 4 200,00 €
+  | Monatliche Fixkosten | 2 400,00 €
+  | Monatlicher Kapitaldienst | 300,00 €
+  | Frei verfügbarer Sparbetrag | 600,00 €
+  | Liquiditätsreserve | 4,0 Monatsausgaben
+  | Bestehende Verbindlichkeiten | 18 000,00 €
+  | Sonstiges Vermögen | 25 000,00 €
+  | Beschäftigungsverhältnis | unbefristet angestellt
+UNTERUEBERSCHRIFT: 2.1 Risikotragfähigkeit
+ABSATZ: [CAP-CLASS] Die Risikotragfähigkeit wurde anhand von sechs Kriterien erhoben und mit 73,50 von 100 Punkten bewertet. Nach den Klassenschwellen des Regelwerks entspricht diese Punktzahl Risikoklasse 4; maßgeblich für die Tragfähigkeit ist Risikoklasse 4. Eine Abweichung zwischen beiden Werten beruht auf einem Ausschlusskriterium, das die Klasse unabhängig von der Punktzahl setzt. Die Tragfähigkeit beschreibt, welches Risiko die wirtschaftlichen Verhältnisse objektiv zulassen, unabhängig davon, welches Risiko gewünscht wird.
+UNTERUEBERSCHRIFT: 2.2 Risikobereitschaft
+ABSATZ: [TOL-CLASS] Die Risikobereitschaft wurde über fünf Fragen erhoben und mit 70,00 von 100 Punkten bewertet. Daraus ergibt sich Risikoklasse 4. Die Bereitschaft beschreibt, welches Risiko subjektiv getragen werden will.
+ABSATZ: [TOL-SCEN] Zur Erhebung der Verlusttoleranz wurden konkrete Eurobeträge vorgelegt und keine Prozentangaben. Bezugsgröße ist das über die Laufzeit eingezahlte Kapital von 169 500,00 €; als tragbar bezeichnet wurde ein zwischenzeitlicher Rückgang von 33 900,00 €. Prozentangaben werden erfahrungsgemäß systematisch anders bewertet als der gleich hohe Betrag; die Betragsdarstellung begrenzt diesen Effekt.
+UNTERUEBERSCHRIFT: 2.3 Kenntnisse und Erfahrungen
+ABSATZ: [KNW-CAP] Kenntnisse und Erfahrungen wurden nach Instrumentengattungen erhoben. Sie ergeben keinen eigenen Punktwert, sondern eine Obergrenze der zulässigen Produktkomplexität: Risikoklasse 4. Rechtsgrundlage ist Art. 55 DelVO (EU) 2017/565.
+--- Seitenumbruch ---
+UEBERSCHRIFT: 6. Simulierte Zielerreichung
+ABSATZ: [REC-SIM] Die Zielerreichung wurde über 10 000 simulierte Verläufe geprüft. Verwendet wurde ein zirkulärer Block-Bootstrap mit einer Blocklänge von zwölf Monaten: Er zieht zusammenhängende historische Zeiträume statt einzelner Monate und erhält damit Autokorrelation, Volatilitätscluster und die Abhängigkeit zwischen den Assetklassen. Kosten und jährliches Rebalancing sind berücksichtigt.
+ABSATZ: [REC-THR] Für dieses Ziel wird eine Mindest-Erfolgswahrscheinlichkeit von 90,00 % verlangt. Der Wert ergibt sich aus Zieltyp und Priorität und ist im Regelwerk hinterlegt.
+ABSATZ: [REC-OUT] Die simulierte Erfolgswahrscheinlichkeit beträgt 84,56 % gegenüber geforderten 90,00 %. Ergebnis des Abgleichs: Konflikt — keine Empfehlung.
+TABELLE: 
+  | Perzentil des Endwerts | Betrag
+  | 5 % | 239 090 €
+  | 25 % | 338 065 €
+  | 50 % | 429 003 €
+  | 75 % | 544 955 €
+  | 95 % | 763 750 €
+  | Zielbetrag zum Vergleich | 300 000 €
+ABSATZ: Im Misserfolgsfall — also gemittelt allein über die Verläufe, die den Zielbetrag verfehlen — fehlen im Mittel 48 227 €. Der mediane größte zwischenzeitliche Rückgang beträgt -21,88 %.
+UEBERSCHRIFT: 7. Risikohinweise
+ABSATZ: Wertpapieranlagen unterliegen Kursschwankungen. Der Wert der Anlage kann fallen; eingesetztes Kapital kann teilweise oder vollständig verloren gehen. Aus der historischen Wertentwicklung lässt sich die künftige nicht ableiten.
+ABSATZ: Die ausgewiesene Erfolgswahrscheinlichkeit ist das Ergebnis einer Simulation auf Grundlage historischer Monatsrenditen. Das Verfahren kann nur Marktverläufe erzeugen, die in ähnlicher Form bereits vorgekommen sind; ein Verlauf, der schlechter ist als alles historisch Beobachtete, ist darin nicht enthalten. Die Angabe ist eine Modellrechnung und keine Zusage.
+ABSATZ: Die Kostenannahmen sind Größenordnungen und nicht die tatsächlichen Kostensätze der genannten Instrumente. Steuern sind nicht berücksichtigt. Beides verändert das Ergebnis und ist vor einer Anlageentscheidung zu konkretisieren.
+ABSATZ: [ADV-STOP] Da keine Empfehlung ergeht, wurde kein Portfolio berechnet. Die Entscheidung darüber, **ob** empfohlen werden darf, geht der Entscheidung darüber, **was** empfohlen wird, voraus.
+UEBERSCHRIFT: 8. Nachweis und Reproduzierbarkeit
+ABSATZ: Alle Angaben dieses Dokuments sind reproduzierbar: Gleiches Profil, gleicher Seed und gleicher Regelstand führen zu einem zeichengleichen Dokument. Der Inhaltshash des Entscheidungspfads ist unten ausgewiesen.
+TABELLE: 
+  | Angabe | Wert
+  | Fassung des Regelwerks | capacity 1.1.0 · classes 1.1.0 · glidepath 1.0.0 · goals 1.2.0 · knowledge 1.0.0 · portfolio 1.0.0 · simulation 1.0.0 · tolerance 1.1.0
+  | Datenstand (Kurzhash) | 1dead02ee323
+  | Inhaltshash des Entscheidungspfads | d72aec4592771fd6480a386396604151e824c75f40d7a88dd0569491333970d4
+  | Aufgezeichnete Entscheidungsschritte | 35
+  | Fassung der Software | 0.1.0
+  | Rechtsgrundlage der Dokumentation | Art. 54 Abs. 12 DelVO (EU) 2017/565 in Verbindung mit § 64 Abs. 4 WpHG
